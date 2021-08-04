@@ -6,7 +6,7 @@ async function start() {
   const tenantService = new TenantService(pool)
 
   try {
-    const result = await tenantService.create('org-d')
+    const result = await tenantService.create('org-g')
     console.log(`created tenant: ${result}`)
   } catch (e) {
     console.error(e)

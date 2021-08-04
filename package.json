@@ -4,13 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --respawn index.ts"
+    "dev": "tsnd --respawn index.ts",
+    "migrate": "node-pg-migrate"
   },
   "dependencies": {
+    "node-pg-migrate": "^5.10.0",
     "pg": "^8.7.1",
     "pg-format": "^1.0.4"
   },
   "devDependencies": {
+    "@types/node-pg-migrate": "^2.3.1",
     "@types/pg": "^8.6.1",
     "@types/pg-format": "^1.0.2",
     "ts-node-dev": "^1.1.8",

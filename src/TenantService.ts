@@ -1,5 +1,6 @@
 import format from 'pg-format'
 import DBPool from './DBPool'
+import migrate from 'node-pg-migrate'
 
 const DEFAULT_OPTS = {
   host: 'localhost',
@@ -30,7 +31,22 @@ export default class TenantService {
 
     await this._pool?.close()
 
-    // TODO: migrate tenant schema
+    await migrate({
+      schema: name,
+      direction: 'up',
+      log: () => {},
+      noLock: true,
+      dir: 'migrations',
+      databaseUrl: {
+        host: 'localhost',
+        port: 5432,
+        database: 'postgres',
+        user: name,
+        password: name,
+      },
+      migrationsTable: 'migrations',
+      count: Infinity,
+    })
 
     await this._pool?.connect({
       host: 'localhost',
